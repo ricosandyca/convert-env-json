@@ -1,0 +1,26 @@
+on: [push]
+
+jobs:
+  test_job:
+    runs-on: ubuntu-latest
+    name: test job
+    steps:
+    - name: make dummy dotenv file
+      uses: SpicyPizza/create-envfile@master
+      with:
+        envkey_HELLO: world
+        envkey_LOREM: ipsum dolor sit amet
+        envkey_SECRET: ${{ secrets.SECRET_DATA }}
+        file_name: .env-dummy
+    - name: convert env to json
+      uses: ricosandyca/convert-env-json@main
+      with:
+        type: env-to-json
+        input_path: .env-dummy
+        output_path: json-result.json
+    - name: convert json to env
+      uses: ricosandyca/convert-env-json@main
+      with:
+        type: json-to-env
+        input_path: json-result.json
+        output_path: .env-result

@@ -1,0 +1,18 @@
+name: convert-env-json
+description: convert .env file to JSON or JSON to .env file
+runs:
+  using: node12
+  main: index.js
+inputs:
+  type:
+    description: convert mode, can be either `env-to-json` or `json-to-env`
+    required: true
+  input_path:
+    description: full path of file to convert
+    required: true
+  output_path:
+    description: full path of output file
+    required: true
+branding:
+  icon: list
+  color: gray-dark
