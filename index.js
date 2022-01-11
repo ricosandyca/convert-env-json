@@ -20,6 +20,10 @@ function readFile(path) {
  * @returns {void}
  */
 function writeFile(path, content) {
+  const pathArr = path.split("/");
+  const dirPath = pathArr.splice(0, pathArr.length - 1).join("/");
+  // create directory if doens't exist
+  if (dirPath && !fs.existsSync(dirPath)) fs.mkdirSync(dirPath, { recursive: true });
   fs.writeFileSync(path, content);
 }
 
