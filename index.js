@@ -14,6 +14,7 @@ function readFile(path) {
 
 /**
  * Write file then save it
+ * has a directory validation, if the given directory doesn't exists it will create one
  *
  * @param {String} path - full path of new file
  * @param {String} content - content of the new file
@@ -22,7 +23,7 @@ function readFile(path) {
 function writeFile(path, content) {
   const pathArr = path.split("/");
   const dirPath = pathArr.splice(0, pathArr.length - 1).join("/");
-  // create directory if doens't exist
+  // create directory if doesn't exist
   if (dirPath && !fs.existsSync(dirPath)) fs.mkdirSync(dirPath, { recursive: true });
   fs.writeFileSync(path, content);
 }
